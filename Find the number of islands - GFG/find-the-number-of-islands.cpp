@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
   public:
     // Function to find the number of islands.
-    void bfs(int n, int m, int r, int c, vector<vector<char>> &grid, vector<vector<int>> &vis){
+    void bfs(int n, int m, int r, int c, vector<vector<char>> &grid, vector<vector<int>> &vis, vector<pair<int, int>> &ls){
         
         vis[r][c] = 1;
         queue<pair<int, int>> q;
@@ -17,7 +17,7 @@ class Solution {
         while(!q.empty()){
             pair<int, int> node = q.front();
             q.pop();
-            //ls.push_back(node);
+            ls.push_back(node);
             r = node.first;
             c = node.second;
             
@@ -38,7 +38,7 @@ class Solution {
         int n = grid.size();
         int m = grid[0].size();
         
-       // vector<vector<pair<int, int>>> ls;
+       vector<vector<pair<int, int>>> ls;
         vector<vector<int>> vis(n, vector<int>(m, 0));
         
         int count = 0;
@@ -46,10 +46,10 @@ class Solution {
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
                 if(grid[i][j]=='1' && !vis[i][j]){
-                    //vector<pair<int, int>> list;
-                    //ls.push_back(list);
+                    vector<pair<int, int>> list;
+                    ls.push_back(list);
                     
-                    bfs(n, m, i, j, grid, vis);
+                    bfs(n, m, i, j, grid, vis, ls[count]);
                     count++;
                 }
             }
