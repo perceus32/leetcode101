@@ -41,21 +41,16 @@ public:
         }
 
         for(int i=n2-1; i>=0; i--){
-            // printHash(hash);
-            if(s.empty()){
-                s.push(nums2[i]);
-            }else if(s.top()<=nums2[i]){
-                while(!s.empty() && s.top()<=nums2[i]){
+            while(!s.empty() && s.top()<=nums2[i]){
                     s.pop();
                 }
-                if(!s.empty()){hash[nums2[i]]=s.top();}
-                s.push(nums2[i]);
-            }else{
+            if(!s.empty()){
                 if(hash.find(nums2[i])!=hash.end()){
                     hash[nums2[i]] = s.top();
                 }
-                s.push(nums2[i]);
             }
+            s.push(nums2[i]);
+            // printHash(hash);
         }
 
         for(int i=0; i<n1; i++){
